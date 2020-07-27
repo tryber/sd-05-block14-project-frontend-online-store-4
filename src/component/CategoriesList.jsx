@@ -22,10 +22,14 @@ class CategoriesList extends React.Component {
 
   render() {
     const { categorias, loading } = this.state;
-    if (loading) return (<span>loading...</span>);
+    if (loading) return <span>loading...</span>;
     return (
       <div>
-        {categorias.map((categoria) => (<p data-testid="category" key={categoria.id}>{categoria.name}</p>))}
+        {categorias.map((categoria) => (
+          <p data-testid="category" key={categoria.id}>
+            {categoria.name}
+          </p>
+        ))}
       </div>
     );
   }
