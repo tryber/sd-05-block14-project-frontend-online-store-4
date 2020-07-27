@@ -19,6 +19,7 @@ class CategoriesList extends React.Component {
   updateState(param) {
     this.setState({ categorias: param, loading: false });
   }
+
   render() {
     const { categorias, loading } = this.state;
     if (loading) return (<span>loading...</span>);
