@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartIcon from './CartIcon';
+import CategoriesList from './CategoriesList';
 
 
 class PageList extends React.Component {
@@ -13,6 +14,7 @@ class PageList extends React.Component {
         <Link to="/cart">
           <CartIcon />
         </Link>
+        <CategoriesList />
       </div>
     );
   }
