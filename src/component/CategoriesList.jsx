@@ -26,9 +26,10 @@ class CategoriesList extends React.Component {
     return (
       <div>
         {categorias.map((categoria) => (
-          <p data-testid="category" key={categoria.id}>
-            {categoria.name}
-          </p>
+          <div>
+            <label htmlFor={categoria.id}>{categoria.name}</label>
+            <input id={categoria.id} type="radio" data-testid="category" key={categoria.id} name="eachCategory" />
+          </div>
         ))}
       </div>
     );
