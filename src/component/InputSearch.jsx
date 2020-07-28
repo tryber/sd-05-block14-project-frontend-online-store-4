@@ -1,4 +1,5 @@
 import React from 'react';
+
 class InputSearch extends React.Component {
 
   render() {

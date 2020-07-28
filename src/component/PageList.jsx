@@ -47,12 +47,12 @@ class PageList extends React.Component {
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
-        <InputSearch 
+        <InputSearch
           products={this.state.products}
           userInput={this.state.userInput}
           handleClick={this.handleClick}
           handleChange={this.handleChange}
-          />
+        />
         <Link to="/cart">
           <CartIcon />
         </Link>

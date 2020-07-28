@@ -29,7 +29,14 @@ class CategoriesList extends React.Component {
         {categorias.map((categoria) => (
           <div key={categoria.id}>
             <label htmlFor={categoria.id}>{categoria.name}</label>
-            <input id={categoria.id} type="radio" data-testid="category" name="eachCategory" value={categoria.id} onChange={handleRadio} />
+            <input
+              id={categoria.id}
+              type="radio"
+              data-testid="category"
+              name="eachCategory"
+              value={categoria.id}
+              onChange={handleRadio}
+            />
           </div>
         ))}
       </div>
