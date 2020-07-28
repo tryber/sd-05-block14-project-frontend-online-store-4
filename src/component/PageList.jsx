@@ -13,15 +13,14 @@ class PageList extends React.Component {
     this.state = {
       products: [],
       userInput: '',
-      // userCategory: '',
+      userCategory: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.handleRadio = this.handleRadio.bind(this);
   }
 
-  //aqui monitoramento do click do button e da selecao da categoria
-  //interligar monitoramento aqui com function dos outros
   handleChange(event) {
     this.setState({ userInput: event.target.value });
   }
@@ -31,9 +30,14 @@ class PageList extends React.Component {
   }
 
   async handleClick() {
-    const { userInput } = this.state;
-    const data = await getProductsFromCategoryAndQuery('', userInput);
+    const { userInput, userCategory } = this.state;
+    const data = await getProductsFromCategoryAndQuery(userCategory, userInput);
     this.updateState(data.results);
+  }
+
+  handleRadio(event) {
+    this.setState({ userCategory: event.target.value });
+    this.handleClick();
   }
 
   render() {
@@ -49,19 +53,14 @@ class PageList extends React.Component {
           handleClick={this.handleClick}
           handleChange={this.handleChange}
           />
-        {/* <SearchBar
-          searchText={this.state.searchText}
-          onSearchTextChange={this.onSearchTextChange}
-          bookmarkedOnly={this.state.bookmarkedOnly}
-          onBookmarkedChange={this.onBookmarkedChange}
-          selectedGenre={this.state.selectedGenre}
-          onSelectedGenreChange={this.onSelectedGenreChange}
-        /> */}
         <Link to="/cart">
           <CartIcon />
         </Link>
         <ProductList listaProdutos={products} />
-        <CategoriesList />
+        <CategoriesList
+          userCategory={this.state.userCategory}
+          handleRadio={this.handleRadio}
+        />
       </div>
     );
   }

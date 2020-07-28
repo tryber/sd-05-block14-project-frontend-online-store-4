@@ -7,10 +7,8 @@ class CategoriesList extends React.Component {
     this.state = {
       categorias: '',
       loading: true,
-      categoryId: '',
     };
     this.updateState = this.updateState.bind(this);
-    // this.handleRadio = this.handleRadio.bind(this);
   }
 
   async componentDidMount() {
@@ -22,13 +20,8 @@ class CategoriesList extends React.Component {
     this.setState({ categorias: param, loading: false });
   }
 
-  // async handleRadio() {
-  //   const { categoryId } = this.state;
-  //   const data = await getProductsFromCategoryAndQuery(categoryId, '');
-  //   // this.updateState(data.results);
-  // }
-
   render() {
+    const { handleRadio } = this.props;
     const { categorias, loading } = this.state;
     if (loading) return <span>loading...</span>;
     return (
@@ -36,7 +29,7 @@ class CategoriesList extends React.Component {
         {categorias.map((categoria) => (
           <div key={categoria.id}>
             <label htmlFor={categoria.id}>{categoria.name}</label>
-            <input id={categoria.id} type="radio" data-testid="category" name="eachCategory" onClick={this.handleRadio} />
+            <input id={categoria.id} type="radio" data-testid="category" name="eachCategory" value={categoria.id} onChange={handleRadio} />
           </div>
         ))}
       </div>
