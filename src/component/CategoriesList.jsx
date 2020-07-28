@@ -21,14 +21,23 @@ class CategoriesList extends React.Component {
   }
 
   render() {
+    const { handleRadio } = this.props;
     const { categorias, loading } = this.state;
     if (loading) return <span>loading...</span>;
     return (
       <div>
         {categorias.map((categoria) => (
-          <p data-testid="category" key={categoria.id}>
-            {categoria.name}
-          </p>
+          <div key={categoria.id}>
+            <label htmlFor={categoria.id}>{categoria.name}</label>
+            <input
+              id={categoria.id}
+              type="radio"
+              data-testid="category"
+              name="eachCategory"
+              value={categoria.id}
+              onChange={handleRadio}
+            />
+          </div>
         ))}
       </div>
     );
