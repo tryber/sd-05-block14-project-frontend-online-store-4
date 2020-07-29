@@ -12,10 +12,13 @@ class Product extends React.Component {
         <h1>{title}</h1>
         <img src={thumbnail} alt="produto" />
         <h2>{`Preço: $${price}`}</h2>
-        <Link data-testid="product-detail-link" to={{
-          pathname: `/product/${produto.id}`,
-          state: { produto }
-        }}>
+        <Link
+          data-testid="product-detail-link"
+          to={{
+            pathname: `/product/${produto.id}`,
+            state: { produto },
+          }}
+        >
           VER DETALHES
         </Link>
       </div>
@@ -24,4 +27,3 @@ class Product extends React.Component {
 }
 
 export default Product;
-
