@@ -6,7 +6,6 @@ import PageList from './component/PageList';
 import PageCart from './component/PageCart';
 import ProductDetailed from './component/ProductDetailed';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,18 +20,16 @@ class App extends React.Component {
     console.log('o que eh o NewCartElement?', newCartElement);
     //  this.setState({carrinho: [...carrinho, newCartElement]});
     this.setState({
-      carrinho: carrinho.some(
-        (item) => item.id === newCartElement.id,
-      )
+      carrinho: carrinho.some((item) => item.id === newCartElement.id)
         ? carrinho.map((item) => {
-          if (item.id === newCartElement.id) {
-            return {
-              ...item,
-              quantidade: item.quantidade + 1,
-            };
-          }
-          return item;
-        })
+            if (item.id === newCartElement.id) {
+              return {
+                ...item,
+                quantidade: item.quantidade + 1,
+              };
+            }
+            return item;
+          })
         : [...carrinho, { ...newCartElement, quantidade: 1 }],
     });
   }
@@ -41,15 +38,24 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={(props) => <PageList
-              {...props} addToCart={this.addToCart}
-              carrinho={this.state.carrinho}/> }
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
+            )}
           />
           <Route path="/cart" render={(props) => <PageCart {...props} />} />
           <Route
-            render={(props) => <ProductDetailed
-              {...props
-          } />} exact path="/product/:productId"
+            render={(props) => (
+              <ProductDetailed
+                {...props}
+                addToCart={this.addToCart}
+                carrinho={this.state.carrinho}
+              />
+            )}
+            exact
+            path="/product/:productId"
           />
         </Switch>
       </BrowserRouter>

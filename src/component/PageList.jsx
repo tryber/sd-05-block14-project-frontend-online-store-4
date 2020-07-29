@@ -6,7 +6,6 @@ import CategoriesList from './CategoriesList';
 import InputSearch from './InputSearch';
 import ProductList from './ProductList';
 
-
 class PageList extends React.Component {
   constructor(props) {
     super(props);
@@ -88,10 +87,7 @@ class PageList extends React.Component {
           <CartIcon />
         </Link>
         <ProductList listaProdutos={products} addToCart={addToCart} />
-        <CategoriesList
-          userCategory={this.state.userCategory}
-          handleRadio={this.handleRadio}
-        />
+        <CategoriesList userCategory={this.state.userCategory} handleRadio={this.handleRadio} />
       </div>
     );
   }
