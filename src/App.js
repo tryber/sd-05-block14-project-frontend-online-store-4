@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={PageList} />
-        <Route path="/cart" component={PageCart} />
+        <Route path="/cart" render={(props) => <PageCart {...props} />} />
         <Route
           render={(props) => <ProductDetailed
             {...props

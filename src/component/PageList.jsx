@@ -14,11 +14,13 @@ class PageList extends React.Component {
       products: [],
       userInput: '',
       userCategory: '',
+      carrinho: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.updateState = this.updateState.bind(this);
     this.handleRadio = this.handleRadio.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   handleChange(event) {
@@ -40,8 +42,30 @@ class PageList extends React.Component {
     this.handleClick();
   }
 
+  addToCart(newCartElement) {
+    const { carrinho } = this.state;
+    console.log('o que eh o NewCartElement?', newCartElement);
+    //  this.setState({carrinho: [...carrinho, newCartElement]});
+    this.setState({
+      carrinho: carrinho.some(
+        (item) => item.id === newCartElement.id,
+      )
+        ? carrinho.forEach((item) => {
+          if (item.id === newCartElement.id) {
+            return {
+              ...item,
+              quantidade: item.quantidade + 1,
+            };
+          }
+          return item;
+        })
+        : [...carrinho, { ...newCartElement, quantidade: 1 }],
+    });
+  }
+
   render() {
-    const { products } = this.state;
+    const { products, carrinho } = this.state;
+    console.log('o setState do carrinho está atualizando o carrinho corretamente?', carrinho);
 
     return (
       <div>
@@ -54,10 +78,15 @@ class PageList extends React.Component {
           handleClick={this.handleClick}
           handleChange={this.handleChange}
         />
-        <Link to="/cart">
+        <Link
+          to={{
+            pathname: '/cart',
+            state: { carrinho },
+          }}
+        >
           <CartIcon />
         </Link>
-        <ProductList listaProdutos={products} />
+        <ProductList listaProdutos={products} addToCart={this.addToCart} />
         <CategoriesList
           userCategory={this.state.userCategory}
           handleRadio={this.handleRadio}
