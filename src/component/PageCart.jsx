@@ -2,6 +2,7 @@ import React from 'react';
 
 class PageCart extends React.Component {
   render() {
+    // const { carrinho } = this.props;
     console.log('to dentro do PageCart', this.props.location);
     const { carrinho } = this.props.location.state;
     console.log('carrinho: ', carrinho);
