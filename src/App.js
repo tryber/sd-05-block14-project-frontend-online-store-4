@@ -9,7 +9,7 @@ import ProductDetailed from './component/ProductDetailed';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { carrinho: [], };
+    this.state = { carrinho: [] };
     this.addToCart = this.addToCart.bind(this);
   }
 
