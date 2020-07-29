@@ -9,9 +9,7 @@ import ProductDetailed from './component/ProductDetailed';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      carrinho: [],
-    };
+    this.state = { carrinho: [], };
     this.addToCart = this.addToCart.bind(this);
   }
 
@@ -22,14 +20,14 @@ class App extends React.Component {
     this.setState({
       carrinho: carrinho.some((item) => item.id === newCartElement.id)
         ? carrinho.map((item) => {
-            if (item.id === newCartElement.id) {
-              return {
-                ...item,
-                quantidade: item.quantidade + 1,
-              };
-            }
-            return item;
-          })
+          if (item.id === newCartElement.id) {
+            return {
+              ...item,
+              quantidade: item.quantidade + 1,
+            };
+          }
+          return item;
+        })
         : [...carrinho, { ...newCartElement, quantidade: 1 }],
     });
   }
