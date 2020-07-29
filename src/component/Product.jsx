@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
   render() {
-    const { produto } = this.props;
+    const { produto, addToCart } = this.props;
     const { title, thumbnail, price } = produto;
 
    // console.log('props addTocart dentro do Product.jsx', addToCart);
@@ -20,7 +20,8 @@ class Product extends React.Component {
           }}
         >
           VER DETALHES
-        </Link>
+        </Link><br />
+        <button onClick={() => addToCart(produto)} data-testid="product-add-to-cart">Adicionar ao Carrinho</button>
       </div>
     );
   }

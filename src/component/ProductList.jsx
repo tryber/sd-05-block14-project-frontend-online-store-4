@@ -3,12 +3,12 @@ import Product from './Product';
 
 class ProductList extends React.Component {
   render() {
-    const { listaProdutos } = this.props;
+    const { listaProdutos, addToCart } = this.props;
     if (listaProdutos !== undefined) {
       return (
         <div>
           {listaProdutos.map((item) => (
-            <Product key={item.id} produto={item} />
+            <Product key={item.id} produto={item} addToCart={addToCart} />
           ))}
         </div>
       );
