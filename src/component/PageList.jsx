@@ -44,8 +44,23 @@ class PageList extends React.Component {
 
   addToCart(newCartElement) {
     const { carrinho } = this.state;
-    console.log('o que o addtoCart faz?', newCartElement );
-    this.setState({carrinho: [...carrinho, newCartElement]});
+    console.log('o que eh o NewCartElement?', newCartElement);
+    //  this.setState({carrinho: [...carrinho, newCartElement]});
+    this.setState({
+      carrinho: carrinho.some(
+        (item) => item.id === newCartElement.id,
+      )
+        ? carrinho.forEach((item) => {
+          if (item.id === newCartElement.id) {
+            return {
+              ...item,
+              quantidade: item.quantidade + 1,
+            };
+          }
+          return item;
+        })
+        : [...carrinho, { ...newCartElement, quantidade: 1 }],
+    });
   }
 
   render() {
@@ -63,10 +78,12 @@ class PageList extends React.Component {
           handleClick={this.handleClick}
           handleChange={this.handleChange}
         />
-        <Link to={{
-          pathname: '/cart',
-          state: {carrinho},
-        }}>
+        <Link
+          to={{
+            pathname: '/cart',
+            state: { carrinho },
+          }}
+        >
           <CartIcon />
         </Link>
         <ProductList listaProdutos={products} addToCart={this.addToCart} />
