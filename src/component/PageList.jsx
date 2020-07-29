@@ -42,6 +42,7 @@ class PageList extends React.Component {
 
   render() {
     const { products } = this.state;
+
     return (
       <div>
         <p data-testid="home-initial-message">
