@@ -50,7 +50,7 @@ class PageList extends React.Component {
       carrinho: carrinho.some(
         (item) => item.id === newCartElement.id,
       )
-        ? carrinho.forEach((item) => {
+        ? carrinho.map((item) => {
           if (item.id === newCartElement.id) {
             return {
               ...item,
