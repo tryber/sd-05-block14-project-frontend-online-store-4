@@ -11,12 +11,11 @@ class App extends React.Component {
     super(props);
     this.state = { carrinho: [] };
     this.addToCart = this.addToCart.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
   }
-
   addToCart(newCartElement) {
     const { carrinho } = this.state;
-    console.log('o que eh o NewCartElement?', newCartElement);
-    //  this.setState({carrinho: [...carrinho, newCartElement]});
     this.setState({
       carrinho: carrinho.some((item) => item.id === newCartElement.id)
         ? carrinho.map((item) => {
@@ -31,34 +30,53 @@ class App extends React.Component {
         : [...carrinho, { ...newCartElement, quantidade: 1 }],
     });
   }
-
+  increaseQuantity(id) {
+    const { carrinho } = this.state;
+    const indice = carrinho.findIndex((item) => item.id === id);
+    const novoCarrinho = carrinho;
+    novoCarrinho[indice].quantidade += 1;
+    this.setState({ carrinho: novoCarrinho });
+  }
+  decreaseQuantity(id) {
+    const { carrinho } = this.state;
+    const indice = carrinho.findIndex((item) => item.id === id);
+    const novoCarrinho = carrinho;
+    if (novoCarrinho[indice].quantidade > 1) {
+      novoCarrinho[indice].quantidade -= 1;
+      this.setState({ carrinho: novoCarrinho });
+    }
+  }
   render() {
     return (
       <BrowserRouter>
         <Switch>
           <Route
-            exact
-            path="/"
+            exact path="/"
             render={(props) => (
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
           />
-          <Route path="/cart" render={(props) => <PageCart {...props} />} />
+          <Route
+            path="/cart"
+            render={(props) => (
+              <PageCart
+                {...props} increaseQuantity={this.increaseQuantity}
+                decreaseQuantity={this.decreaseQuantity}
+              />
+            )}
+          />
           <Route
             render={(props) => (
               <ProductDetailed
-                {...props}
-                addToCart={this.addToCart}
+                {...props} addToCart={this.addToCart}
                 carrinho={this.state.carrinho}
               />
             )}
-            exact
-            path="/product/:productId"
+            exact path="/product/:productId"
           />
         </Switch>
       </BrowserRouter>
     );
   }
 }
-
 export default App;
