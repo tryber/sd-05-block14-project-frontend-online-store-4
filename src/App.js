@@ -11,10 +11,13 @@ class App extends React.Component {
     super(props);
     this.state = { carrinho: [] };
     this.addToCart = this.addToCart.bind(this);
+    // this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
   }
 
   addToCart(newCartElement) {
     const { carrinho } = this.state;
+    // console.log('ver o que tem dentro do carrinho', carrinho);
     console.log('o que eh o NewCartElement?', newCartElement);
     //  this.setState({carrinho: [...carrinho, newCartElement]});
     this.setState({
@@ -32,6 +35,38 @@ class App extends React.Component {
     });
   }
 
+  increaseQuantity(id) {
+    const { carrinho } = this.state;
+    console.log("ver carrinho do increase", carrinho);
+    console.log("ver param item.id", id);
+    this.setState((prevState) => {
+      carrinho : prevState.carrinho.find((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantidade: item.quantidade = item.quantidade + 1,
+        };
+      }
+      return item;
+      })
+    });
+
+    //   carrinho: carrinho.find((item) => {
+    //       if (item.id === id) {
+    //         return {
+    //           quantidade: item.quantidade + 1,
+    //       }
+    //   }
+    //     })
+    //   // percorrer array para ver em que indice està o id
+    // })
+}
+
+
+  // decreaseQuantity() {
+    
+  // }
+
   render() {
     return (
       <BrowserRouter>
@@ -43,7 +78,7 @@ class App extends React.Component {
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
           />
-          <Route path="/cart" render={(props) => <PageCart {...props} />} />
+          <Route path="/cart" render={(props) => <PageCart {...props} increaseQuantity={this.increaseQuantity} />} />
           <Route
             render={(props) => (
               <ProductDetailed
