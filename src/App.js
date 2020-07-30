@@ -36,16 +36,16 @@ class App extends React.Component {
 
   increaseQuantity(id) {
     const { carrinho } = this.state;
-    let indice = carrinho.findIndex((item) => item.id === id);
-    let novoCarrinho = carrinho;
+    const indice = carrinho.findIndex((item) => item.id === id);
+    const novoCarrinho = carrinho;
     novoCarrinho[indice].quantidade += 1;
     this.setState({ carrinho: novoCarrinho });
   }
 
   decreaseQuantity(id) {
     const { carrinho } = this.state;
-    let indice = carrinho.findIndex((item) => item.id === id);
-    let novoCarrinho = carrinho;
+    const indice = carrinho.findIndex((item) => item.id === id);
+    const novoCarrinho = carrinho;
     if (novoCarrinho[indice].quantidade > 1) {
       novoCarrinho[indice].quantidade -= 1;
       this.setState({ carrinho: novoCarrinho });
@@ -57,28 +57,32 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route
-            exact
-            path="/"
+            exact path="/"
             render={(props) => (
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
           />
-          <Route path="/cart" render={(props) => <PageCart {...props} increaseQuantity={this.increaseQuantity} decreaseQuantity={this.decreaseQuantity} />} />
+          <Route
+            path="/cart"
+            render={(props) => (
+              <PageCart
+                {...props} increaseQuantity={this.increaseQuantity}
+                decreaseQuantity={this.decreaseQuantity}
+              />
+            )}
+          />
           <Route
             render={(props) => (
               <ProductDetailed
-                {...props}
-                addToCart={this.addToCart}
+                {...props} addToCart={this.addToCart}
                 carrinho={this.state.carrinho}
               />
             )}
-            exact
-            path="/product/:productId"
+            exact path="/product/:productId"
           />
         </Switch>
       </BrowserRouter>
     );
   }
 }
-
 export default App;

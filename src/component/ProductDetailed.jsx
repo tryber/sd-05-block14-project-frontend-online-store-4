@@ -26,6 +26,8 @@ class ProductDetailed extends React.Component {
         >
           <CartIcon />
         </Link>
+        <label htmlFor="comment">Comentários: </label>
+        <textarea id="comment" data-testid="product-detail-evaluation" />
       </div>
     );
   }
