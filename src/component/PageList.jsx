@@ -6,7 +6,6 @@ import CategoriesList from './CategoriesList';
 import InputSearch from './InputSearch';
 import ProductList from './ProductList';
 
-
 class PageList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,13 +13,13 @@ class PageList extends React.Component {
       products: [],
       userInput: '',
       userCategory: '',
-      carrinho: [],
+      // carrinho: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.updateState = this.updateState.bind(this);
     this.handleRadio = this.handleRadio.bind(this);
-    this.addToCart = this.addToCart.bind(this);
+    // this.addToCart = this.addToCart.bind(this);
   }
 
   handleChange(event) {
@@ -42,29 +41,30 @@ class PageList extends React.Component {
     this.handleClick();
   }
 
-  addToCart(newCartElement) {
-    const { carrinho } = this.state;
-    console.log('o que eh o NewCartElement?', newCartElement);
-    //  this.setState({carrinho: [...carrinho, newCartElement]});
-    this.setState({
-      carrinho: carrinho.some(
-        (item) => item.id === newCartElement.id,
-      )
-        ? carrinho.map((item) => {
-          if (item.id === newCartElement.id) {
-            return {
-              ...item,
-              quantidade: item.quantidade + 1,
-            };
-          }
-          return item;
-        })
-        : [...carrinho, { ...newCartElement, quantidade: 1 }],
-    });
-  }
+  // addToCart(newCartElement) {
+  //   const { carrinho } = this.state;
+  //   console.log('o que eh o NewCartElement?', newCartElement);
+  //   //  this.setState({carrinho: [...carrinho, newCartElement]});
+  //   this.setState({
+  //     carrinho: carrinho.some(
+  //       (item) => item.id === newCartElement.id,
+  //     )
+  //       ? carrinho.map((item) => {
+  //         if (item.id === newCartElement.id) {
+  //           return {
+  //             ...item,
+  //             quantidade: item.quantidade + 1,
+  //           };
+  //         }
+  //         return item;
+  //       })
+  //       : [...carrinho, { ...newCartElement, quantidade: 1 }],
+  //   });
+  // }
 
   render() {
-    const { products, carrinho } = this.state;
+    const { carrinho, addToCart } = this.props;
+    const { products } = this.state;
     console.log('o setState do carrinho está atualizando o carrinho corretamente?', carrinho);
 
     return (
@@ -86,11 +86,8 @@ class PageList extends React.Component {
         >
           <CartIcon />
         </Link>
-        <ProductList listaProdutos={products} addToCart={this.addToCart} />
-        <CategoriesList
-          userCategory={this.state.userCategory}
-          handleRadio={this.handleRadio}
-        />
+        <ProductList listaProdutos={products} addToCart={addToCart} />
+        <CategoriesList userCategory={this.state.userCategory} handleRadio={this.handleRadio} />
       </div>
     );
   }
