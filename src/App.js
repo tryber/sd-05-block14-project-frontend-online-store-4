@@ -50,16 +50,15 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route
-            exact path="/"
+          <Route exact path="/"
             render={(props) => (
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
           />
-          <Route
-            path="/cart"
+          <Route path="/cart"
             render={(props) => (
-              <PageCart {...props} increaseQuantity={this.increaseQuantity}
+              <PageCart
+                {...props} increaseQuantity={this.increaseQuantity}
                 decreaseQuantity={this.decreaseQuantity}
               />
             )}
