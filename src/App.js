@@ -51,8 +51,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route
-            exact
-            path="/"
+            exact path="/"
             render={(props) => (
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
@@ -60,9 +59,7 @@ class App extends React.Component {
           <Route
             path="/cart"
             render={(props) => (
-              <PageCart
-                {...props}
-                increaseQuantity={this.increaseQuantity}
+              <PageCart {...props} increaseQuantity={this.increaseQuantity}
                 decreaseQuantity={this.decreaseQuantity}
               />
             )}
@@ -70,13 +67,11 @@ class App extends React.Component {
           <Route
             render={(props) => (
               <ProductDetailed
-                {...props}
-                addToCart={this.addToCart}
+                {...props} addToCart={this.addToCart}
                 carrinho={this.state.carrinho}
               />
             )}
-            exact
-            path="/product/:productId"
+            exact path="/product/:productId"
           />
         </Switch>
       </BrowserRouter>

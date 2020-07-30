@@ -14,14 +14,12 @@ class PageCart extends React.Component {
               <button
                 data-testid="product-decrease-quantity"
                 onClick={() => decreaseQuantity(item.id)}
-              >
-                -
+              > - 
               </button>
               <button
                 data-testid="product-increase-quantity"
                 onClick={() => increaseQuantity(item.id)}
-              >
-                +
+              > +
               </button>
             </div>
           ))}
