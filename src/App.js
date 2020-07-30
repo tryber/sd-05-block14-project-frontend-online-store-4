@@ -5,6 +5,7 @@ import './App.css';
 import PageList from './component/PageList';
 import PageCart from './component/PageCart';
 import ProductDetailed from './component/ProductDetailed';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +57,16 @@ class App extends React.Component {
               <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
             )}
           />
-          <Route path="/cart" render={(props) => <PageCart {...props} increaseQuantity={this.increaseQuantity} decreaseQuantity={this.decreaseQuantity} />} />
+          <Route
+            path="/cart"
+            render={(props) => (
+              <PageCart
+                {...props}
+                increaseQuantity={this.increaseQuantity}
+                decreaseQuantity={this.decreaseQuantity}
+              />
+            )}
+          />
           <Route
             render={(props) => (
               <ProductDetailed
