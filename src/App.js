@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -14,6 +16,7 @@ class App extends React.Component {
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
   }
+
   addToCart(newCartElement) {
     const { carrinho } = this.state;
     this.setState({
@@ -30,6 +33,7 @@ class App extends React.Component {
         : [...carrinho, { ...newCartElement, quantidade: 1 }],
     });
   }
+
   increaseQuantity(id) {
     const { carrinho } = this.state;
     const indice = carrinho.findIndex((item) => item.id === id);
@@ -37,6 +41,7 @@ class App extends React.Component {
     novoCarrinho[indice].quantidade += 1;
     this.setState({ carrinho: novoCarrinho });
   }
+
   decreaseQuantity(id) {
     const { carrinho } = this.state;
     const indice = carrinho.findIndex((item) => item.id === id);
@@ -46,6 +51,7 @@ class App extends React.Component {
       this.setState({ carrinho: novoCarrinho });
     }
   }
+
   render() {
     return (
       <BrowserRouter>

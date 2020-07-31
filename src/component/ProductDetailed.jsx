@@ -15,7 +15,11 @@ class ProductDetailed extends React.Component {
         <h1 data-testid="product-detail-name">{title}</h1>
         <img src={thumbnail} alt="produto" />
         <h2>{`Preço: $${price}`}</h2>
-        <button data-testid="product-detail-add-to-cart" onClick={() => addToCart(produto)}>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={() => addToCart(produto)}
+        >
           Adicionar ao carrinho
         </button>
         <Link
@@ -26,6 +30,8 @@ class ProductDetailed extends React.Component {
         >
           <CartIcon />
         </Link>
+        <label htmlFor="comment">Comentários: </label>
+        <textarea id="comment" data-testid="product-detail-evaluation" />
       </div>
     );
   }
