@@ -7,6 +7,7 @@ import './App.css';
 import PageList from './component/PageList';
 import PageCart from './component/PageCart';
 import ProductDetailed from './component/ProductDetailed';
+import Checkout from './component/Checkout';
 
 class App extends React.Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class App extends React.Component {
             )}
             exact path="/product/:productId"
           />
+          <Route path="/checkout" component={Checkout}/>
         </Switch>
       </BrowserRouter>
     );
