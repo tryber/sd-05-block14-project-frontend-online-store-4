@@ -7,6 +7,7 @@ import './App.css';
 import PageList from './component/PageList';
 import PageCart from './component/PageCart';
 import ProductDetailed from './component/ProductDetailed';
+import Checkout from './component/Checkout';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,33 +55,33 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact path="/"
-            render={(props) => (
-              <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
-            )}
-          />
-          <Route
-            path="/cart"
-            render={(props) => (
-              <PageCart
-                {...props} increaseQuantity={this.increaseQuantity}
-                decreaseQuantity={this.decreaseQuantity}
-              />
-            )}
-          />
-          <Route
-            render={(props) => (
-              <ProductDetailed
-                {...props} addToCart={this.addToCart}
-                carrinho={this.state.carrinho}
-              />
-            )}
-            exact path="/product/:productId"
-          />
-        </Switch>
+      <BrowserRouter><Switch>
+        <Route
+          exact path="/"
+          render={(props) => (
+            <PageList {...props} addToCart={this.addToCart} carrinho={this.state.carrinho} />
+          )}
+        />
+        <Route
+          path="/cart"
+          render={(props) => (
+            <PageCart
+              {...props} increaseQuantity={this.increaseQuantity}
+              decreaseQuantity={this.decreaseQuantity}
+            />
+          )}
+        />
+        <Route
+          render={(props) => (
+            <ProductDetailed
+              {...props} addToCart={this.addToCart}
+              carrinho={this.state.carrinho}
+            />
+          )}
+          exact path="/product/:productId"
+        />
+        <Route path="/checkout" component={Checkout} />
+      </Switch>
       </BrowserRouter>
     );
   }
